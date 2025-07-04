@@ -14,3 +14,5 @@ torchaudio
 resampy
 torchcrepe
 # Optional: torchfcpe if using fcpe F0 extraction
+#Now extra stuff, just debugging
+einops

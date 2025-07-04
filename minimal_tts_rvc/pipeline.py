@@ -15,7 +15,7 @@ now_dir = os.getcwd()
 sys.path.append(now_dir)
 
 from predictors.RMVPE import RMVPE0Predictor
-from predictors.FCPE import FCPEF0Predictor
+# from predictors.FCPE import FCPEF0Predictor
 
 import logging
 
