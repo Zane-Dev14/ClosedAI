@@ -2,13 +2,8 @@ import os
 import sys
 import asyncio
 import edge_tts
-from infer import VoiceConverter
-
-# MODELS dict will be imported from a new models_config.py file
-try:
-    from .models_config import MODELS
-except ImportError:
-    from models_config import MODELS
+from minimal_tts_rvc.infer import VoiceConverter
+from minimal_tts_rvc.models_config import MODELS
 
 TTS_WAV = "output/output_tts.wav"
 RVC_WAV = "output/output_rvc.mp3"

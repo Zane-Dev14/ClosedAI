@@ -27,7 +27,8 @@ sys.path.append(now_dir)
 base_path = os.path.join(now_dir, "models", "formant", "stftpitchshift")
 stft = base_path + ".exe" if sys.platform == "win32" else base_path
 
-from configs.config import Config
+from minimal_tts_rvc.configs.config import Config
+from minimal_tts_rvc.stftpitchshift import StftPitchShift
 
 class HubertModelWithFinalProj(HubertModel):
     def __init__(self, config):
@@ -71,8 +72,6 @@ def load_audio_infer(
         if formant_shifting:
             formant_qfrency = kwargs.get("formant_qfrency", 0.8)
             formant_timbre = kwargs.get("formant_timbre", 0.8)
-
-            from stftpitchshift import StftPitchShift
 
             pitchshifter = StftPitchShift(1024, 32, sample_rate)
             audio = pitchshifter.shiftpitch(

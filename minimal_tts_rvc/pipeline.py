@@ -10,12 +10,11 @@ import librosa
 import numpy as np
 from scipy import signal
 from torch import Tensor
+from minimal_tts_rvc.predictors.RMVPE import RMVPE0Predictor
+# from minimal_tts_rvc.predictors.FCPE import FCPEF0Predictor
 
 now_dir = os.getcwd()
 sys.path.append(now_dir)
-
-from predictors.RMVPE import RMVPE0Predictor
-# from predictors.FCPE import FCPEF0Predictor
 
 import logging
 
