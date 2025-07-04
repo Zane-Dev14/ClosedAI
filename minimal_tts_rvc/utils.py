@@ -28,7 +28,7 @@ base_path = os.path.join(now_dir, "models", "formant", "stftpitchshift")
 stft = base_path + ".exe" if sys.platform == "win32" else base_path
 
 from minimal_tts_rvc.configs.config import Config
-from minimal_tts_rvc.stftpitchshift import StftPitchShift
+# from minimal_tts_rvc.stftpitchshift import StftPitchShift
 
 class HubertModelWithFinalProj(HubertModel):
     def __init__(self, config):
