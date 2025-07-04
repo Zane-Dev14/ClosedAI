@@ -1,0 +1,20 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+
+# Ignore git and version control
+.git/
+
+# Ignore output and temp files
+output/
+.DS_Store
+
+# Ignore local config files
+.env
+*.env
+*.local 
