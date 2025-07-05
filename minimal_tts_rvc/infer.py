@@ -23,8 +23,9 @@ from pedalboard import (
     Delay,
 )
 
-now_dir = os.getcwd()
-sys.path.append(now_dir)
+# Get the directory where this file is located
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
 
 from minimal_tts_rvc.pipeline import Pipeline as VC
 from minimal_tts_rvc.utils import load_audio_infer, load_embedding
@@ -266,14 +267,18 @@ class VoiceConverter:
                 self.load_hubert(embedder_model, embedder_model_custom)
                 self.last_embedder_model = embedder_model
 
-            file_index = (
-                index_path.strip()
-                .strip('"')
-                .strip("\n")
-                .strip('"')
-                .strip()
-                .replace("trained", "added")
-            )
+            # Handle case where index_path is None (like for ChrisPratt model)
+            if index_path is None:
+                file_index = None
+            else:
+                file_index = (
+                    index_path.strip()
+                    .strip('"')
+                    .strip("\n")
+                    .strip('"')
+                    .strip()
+                    .replace("trained", "added")
+                )
 
             if self.tgt_sr != resample_sr >= 16000:
                 self.tgt_sr = resample_sr
@@ -454,11 +459,15 @@ class VoiceConverter:
         Args:
             weight_root (str): Path to the model weights.
         """
-        self.cpt = (
-            torch.load(weight_root, map_location="cpu", weights_only=True)
-            if os.path.isfile(weight_root)
-            else None
-        )
+        try:
+            self.cpt = (
+                torch.load(weight_root, map_location="cpu", weights_only=True)
+                if os.path.isfile(weight_root)
+                else None
+            )
+        except Exception as e:
+            print(f"Error loading model: {e}")
+            self.cpt = None
 
     def setup_network(self):
         """

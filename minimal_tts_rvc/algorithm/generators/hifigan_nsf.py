@@ -6,9 +6,9 @@ from torch.nn.utils import remove_weight_norm
 from torch.nn.utils.parametrizations import weight_norm
 from torch.utils.checkpoint import checkpoint
 
-from rvc.lib.algorithm.commons import init_weights
-from rvc.lib.algorithm.generators.hifigan import SineGenerator
-from rvc.lib.algorithm.residuals import LRELU_SLOPE, ResBlock
+from minimal_tts_rvc.algorithm.commons import init_weights
+from minimal_tts_rvc.algorithm.generators.hifigan import SineGenerator
+from minimal_tts_rvc.algorithm.residuals import LRELU_SLOPE, ResBlock
 
 
 class SourceModuleHnNSF(torch.nn.Module):

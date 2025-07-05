@@ -1,5 +1,5 @@
 import torch
-from rvc.lib.algorithm.commons import fused_add_tanh_sigmoid_multiply
+from minimal_tts_rvc.algorithm.commons import fused_add_tanh_sigmoid_multiply
 
 
 class WaveNet(torch.nn.Module):

@@ -4,8 +4,8 @@ from torch.nn.utils import remove_weight_norm
 from torch.nn.utils.parametrizations import weight_norm
 from typing import Optional
 
-from rvc.lib.algorithm.residuals import LRELU_SLOPE, ResBlock
-from rvc.lib.algorithm.commons import init_weights
+from minimal_tts_rvc.algorithm.residuals import LRELU_SLOPE, ResBlock
+from minimal_tts_rvc.algorithm.commons import init_weights
 
 
 class HiFiGANGenerator(torch.nn.Module):

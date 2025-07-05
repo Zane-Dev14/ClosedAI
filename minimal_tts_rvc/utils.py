@@ -21,14 +21,14 @@ logging.getLogger("faiss.loader").setLevel(logging.ERROR)
 logging.getLogger("transformers").setLevel(logging.ERROR)
 logging.getLogger("torch").setLevel(logging.ERROR)
 
-now_dir = os.getcwd()
-sys.path.append(now_dir)
+# Get the directory where this file is located
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
 
-base_path = os.path.join(now_dir, "models", "formant", "stftpitchshift")
+base_path = os.path.join(current_dir, "models", "formant", "stftpitchshift")
 stft = base_path + ".exe" if sys.platform == "win32" else base_path
 
 from minimal_tts_rvc.configs.config import Config
-# from minimal_tts_rvc.stftpitchshift import StftPitchShift
 
 class HubertModelWithFinalProj(HubertModel):
     def __init__(self, config):
@@ -73,6 +73,8 @@ def load_audio_infer(
             formant_qfrency = kwargs.get("formant_qfrency", 0.8)
             formant_timbre = kwargs.get("formant_timbre", 0.8)
 
+            from stftpitchshift import StftPitchShift
+
             pitchshifter = StftPitchShift(1024, 32, sample_rate)
             audio = pitchshifter.shiftpitch(
                 audio,
@@ -94,7 +96,9 @@ def format_title(title):
 
 
 def load_embedding(embedder_model, custom_embedder=None):
-    embedder_root = os.path.join(now_dir, "rvc", "models", "embedders")
+    # Get the directory where this file is located
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    embedder_root = os.path.join(current_dir, "rvc", "models", "embedders")
     embedding_list = {
         "contentvec": os.path.join(embedder_root, "contentvec"),
         "chinese-hubert-base": os.path.join(embedder_root, "chinese_hubert_base"),

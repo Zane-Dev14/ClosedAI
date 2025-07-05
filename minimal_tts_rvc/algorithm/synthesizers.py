@@ -1,13 +1,12 @@
 import torch
-
 from typing import Optional
-# from rvc.lib.algorithm.generators.hifigan_mrf import HiFiGANMRFGenerator
-# from rvc.lib.algorithm.generators.hifigan_nsf import HiFiGANNSFGenerator
-# from rvc.lib.algorithm.generators.hifigan import HiFiGANGenerator
-# from rvc.lib.algorithm.generators.refinegan import RefineGANGenerator
-# from rvc.lib.algorithm.commons import slice_segments, rand_slice_segments
-# from rvc.lib.algorithm.residuals import ResidualCouplingBlock
-# from rvc.lib.algorithm.encoders import TextEncoder, PosteriorEncoder
+from minimal_tts_rvc.algorithm.generators.hifigan_mrf import HiFiGANMRFGenerator
+from minimal_tts_rvc.algorithm.generators.hifigan_nsf import HiFiGANNSFGenerator
+from minimal_tts_rvc.algorithm.generators.hifigan import HiFiGANGenerator
+from minimal_tts_rvc.algorithm.generators.refinegan import RefineGANGenerator
+from minimal_tts_rvc.algorithm.commons import slice_segments, rand_slice_segments
+from minimal_tts_rvc.algorithm.residuals import ResidualCouplingBlock
+from minimal_tts_rvc.algorithm.encoders import TextEncoder, PosteriorEncoder
 
 
 class Synthesizer(torch.nn.Module):

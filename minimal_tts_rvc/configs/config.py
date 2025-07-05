@@ -35,8 +35,10 @@ class Config:
 
     def load_config_json(self):
         configs = {}
+        # Get the directory where this file is located
+        current_dir = os.path.dirname(os.path.abspath(__file__))
         for config_file in version_config_paths:
-            config_path = os.path.join("rvc", "configs", config_file)
+            config_path = os.path.join(current_dir, config_file)
             with open(config_path, "r") as f:
                 configs[config_file] = json.load(f)
         return configs

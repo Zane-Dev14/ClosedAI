@@ -10,11 +10,13 @@ import librosa
 import numpy as np
 from scipy import signal
 from torch import Tensor
-from minimal_tts_rvc.predictors.RMVPE import RMVPE0Predictor
-# from minimal_tts_rvc.predictors.FCPE import FCPEF0Predictor
 
-now_dir = os.getcwd()
-sys.path.append(now_dir)
+# Get the directory where this file is located
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
+
+from minimal_tts_rvc.predictors.RMVPE import RMVPE0Predictor
+# from predictors.FCPE import FCPEF0Predictor
 
 import logging
 
@@ -204,8 +206,11 @@ class Pipeline:
         ]
         self.autotune = Autotune(self.ref_freqs)
         self.note_dict = self.autotune.note_dict
+        # Get the directory where this file is located
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        rmvpe_path = os.path.join(current_dir, "rvc", "models", "predictors", "rmvpe.pt")
         self.model_rmvpe = RMVPE0Predictor(
-            os.path.join("rvc", "models", "predictors", "rmvpe.pt"),
+            rmvpe_path,
             device=self.device,
         )
 
@@ -295,8 +300,11 @@ class Pipeline:
                 f0 = self.model_rmvpe.infer_from_audio(x, thred=0.03)
                 f0 = f0[1:]
             elif method == "fcpe":
+                # Get the directory where this file is located
+                current_dir = os.path.dirname(os.path.abspath(__file__))
+                fcpe_path = os.path.join(current_dir, "rvc", "models", "predictors", "fcpe.pt")
                 self.model_fcpe = FCPEF0Predictor(
-                    os.path.join("rvc", "models", "predictors", "fcpe.pt"),
+                    fcpe_path,
                     f0_min=int(f0_min),
                     f0_max=int(f0_max),
                     dtype=torch.float32,
@@ -352,8 +360,11 @@ class Pipeline:
         elif f0_method == "rmvpe":
             f0 = self.model_rmvpe.infer_from_audio(x, thred=0.03)
         elif f0_method == "fcpe":
+            # Get the directory where this file is located
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            fcpe_path = os.path.join(current_dir, "rvc", "models", "predictors", "fcpe.pt")
             self.model_fcpe = FCPEF0Predictor(
-                os.path.join("rvc", "models", "predictors", "fcpe.pt"),
+                fcpe_path,
                 f0_min=int(self.f0_min),
                 f0_max=int(self.f0_max),
                 dtype=torch.float32,
@@ -541,7 +552,7 @@ class Pipeline:
             f0_autotune: Whether to apply autotune to the F0 contour.
             f0_file: Path to a file containing an F0 contour to use.
         """
-        if file_index != "" and os.path.exists(file_index) and index_rate > 0:
+        if file_index is not None and file_index != "" and os.path.exists(file_index) and index_rate > 0:
             try:
                 index = faiss.read_index(file_index)
                 big_npy = index.reconstruct_n(0, index.ntotal)

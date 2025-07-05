@@ -4,8 +4,8 @@ from typing import Optional, Tuple
 from torch.nn.utils import remove_weight_norm
 from torch.nn.utils.parametrizations import weight_norm
 
-from rvc.lib.algorithm.modules import WaveNet
-from rvc.lib.algorithm.commons import get_padding, init_weights
+from minimal_tts_rvc.algorithm.modules import WaveNet
+from minimal_tts_rvc.algorithm.commons import get_padding, init_weights
 
 LRELU_SLOPE = 0.1
 

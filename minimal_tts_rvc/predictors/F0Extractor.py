@@ -9,8 +9,8 @@ import torchfcpe
 import os
 
 # from tools.anyf0.rmvpe import RMVPE
-from rvc.lib.predictors.RMVPE import RMVPE0Predictor
-from rvc.configs.config import Config
+from minimal_tts_rvc.predictors.RMVPE import RMVPE0Predictor
+from minimal_tts_rvc.configs.config import Config
 
 config = Config()
 
@@ -76,8 +76,11 @@ class F0Extractor:
             )
             f0 = f0.squeeze().cpu().numpy()
         elif method == "rmvpe":
+            # Get the directory where this file is located
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            rmvpe_path = os.path.join(current_dir, "..", "rvc", "models", "predictors", "rmvpe.pt")
             model_rmvpe = RMVPE0Predictor(
-                os.path.join("rvc", "models", "predictors", "rmvpe.pt"),
+                rmvpe_path,
                 device=config.device,
                 # hop_length=80
             )

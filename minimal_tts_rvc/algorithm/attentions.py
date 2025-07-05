@@ -1,6 +1,6 @@
 import math
 import torch
-from rvc.lib.algorithm.commons import convert_pad_shape
+from minimal_tts_rvc.algorithm.commons import convert_pad_shape
 
 
 class MultiHeadAttention(torch.nn.Module):
