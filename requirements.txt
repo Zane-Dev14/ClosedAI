@@ -26,6 +26,3 @@ langchain_chroma
 langchain
 # Requests is used for model/pattern downloads
 requests
-
-# Production dependencies
-curl_cffi
