@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: closedai-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10
+      - key: PORT
+        value: 8000
+    healthCheckPath: /health
+    autoDeploy: true 

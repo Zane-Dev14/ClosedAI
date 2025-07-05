@@ -21,6 +21,11 @@ pydantic
 openai>=1.0.0
 chromadb>=0.4.0
 python-dotenv>=1.0.0
-
+langchain_openai
+langchain_chroma
+langchain
 # Requests is used for model/pattern downloads
 requests
+
+# Production dependencies
+curl_cffi

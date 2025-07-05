@@ -1,20 +1,52 @@
-# Ignore Python cache and compiled files
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.Python
+*.so
 
-# Ignore virtual environments
+# Virtual environments
 venv/
+env/
+ENV/
 
-# Ignore git and version control
+# Git
 .git/
+.gitignore
 
-# Ignore output and temp files
-output/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
 .DS_Store
+Thumbs.db
 
-# Ignore local config files
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Local config
 .env
-*.env
-*.local 
+.env.local
+*.local
+
+# Documentation
+README.md
+*.md
+
+# Test files
+tests/
+test_*
+*_test.py
+
+# Development files
+.dev/
+development/ 
